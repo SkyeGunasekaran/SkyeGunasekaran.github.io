@@ -1,0 +1,105 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    color: #333;
+    background-color: #f4f4f4;
+    padding: 20px;
+}
+
+header {
+    background: #333;
+    color: #fff;
+    padding: 10px 0;
+    text-align: center;
+}
+
+header nav ul {
+    list-style-type: none;
+}
+
+header nav ul li {
+    display: inline;
+    margin: 0 15px;
+}
+
+header nav ul li a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 18px;
+}
+
+section {
+    margin: 40px 0;
+}
+
+h1, h2 {
+    color: #333;
+    margin-bottom: 20px;
+}
+
+a {
+    color: #0066cc;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+.about-container {
+    display: flex; /* This makes the image and text align side by side */
+    align-items: center; /* Aligns the image and text vertically */
+    gap: 20px; /* Adds space between the image and the text */
+}
+
+.profile-pic {
+    width: 200px;
+    height: auto;
+    flex-shrink: 0; /* Prevents the image from shrinking */
+}
+
+.about-container p {
+    max-width: 600px; /* Limits the width of the text for readability */
+    font-size: 16px;
+    line-height: 1.6;
+}
+
+@media (max-width: 600px) {
+    header nav ul li {
+        display: block;
+        margin: 10px 0;
+    }
+
+    body {
+        padding: 10px;
+    }
+}
+.about-info {
+    max-width: 600px;
+}
+
+.about-info p {
+    margin: 5px 0; /* Adds spacing between the pronouns, email, and paragraph */
+    font-size: 16px;
+    line-height: 1.6;
+}
+
+.pronouns, .email {
+    font-size: 14px;
+    color: #555;
+}
+
+.email a {
+    color: #0066cc;
+    text-decoration: none;
+}
+
+.email a:hover {
+    text-decoration: underline;
+}
