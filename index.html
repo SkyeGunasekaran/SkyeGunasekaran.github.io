@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Skye Gunasekaran</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #faf9f7;
+      --ink: #1c1a18;
+      --dim: #555048;
+      --muted: #8a847c;
+      --link: #8b2500;
+      --rule: #ccc8c0;
+    }
+
+    html { font-size: 15px; }
+
+    body {
+      font-family: 'Times New Roman', Times, serif;
+      background: var(--bg);
+      color: var(--ink);
+      line-height: 1.6;
+    }
+
+    /* ─── LAYOUT ─── */
+    .wrap {
+      max-width: 680px;
+      margin: 0 auto;
+      padding: 3.5rem 1.5rem 5rem;
+    }
+
+    /* ─── HEADER ─── */
+    .hd {
+      display: grid;
+      grid-template-columns: 110px 1fr;
+      gap: 0 1.6rem;
+      margin-bottom: 2.6rem;
+      align-items: start;
+    }
+
+    .hd-photo {
+      width: 110px;
+      height: 110px;
+      border-radius: 2px;
+      background: #d8d3cb;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2rem;
+      color: var(--muted);
+      overflow: hidden;
+      flex-shrink: 0;
+    }
+
+    .hd-photo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .hd-info h1 {
+      font-size: 1.55rem;
+      font-weight: bold;
+      letter-spacing: 0.01em;
+      margin-bottom: 0.25rem;
+      line-height: 1.2;
+    }
+
+    .hd-info .meta {
+      font-size: 0.88rem;
+      color: var(--dim);
+      line-height: 1.75;
+    }
+
+    /* ─── SECTIONS ─── */
+    section {
+      margin-bottom: 2.2rem;
+    }
+
+    section h2 {
+      font-size: 0.95rem;
+      font-weight: bold;
+      text-transform: uppercase;
+      letter-spacing: 0.09em;
+      padding-bottom: 0.28rem;
+      border-bottom: 1px solid var(--rule);
+      margin-bottom: 1rem;
+      color: var(--ink);
+    }
+
+    /* ─── ABOUT ─── */
+    .about p {
+      font-size: 0.93rem;
+      color: var(--dim);
+      margin-bottom: 0.55rem;
+    }
+    .about p:last-child { margin-bottom: 0; }
+
+    /* ─── NEWS ─── */
+    .news-item {
+      display: grid;
+      grid-template-columns: 78px 1fr;
+      gap: 0 0.8rem;
+      margin-bottom: 0.5rem;
+      font-size: 0.88rem;
+    }
+
+    .news-date {
+      color: var(--muted);
+      font-size: 0.8rem;
+      padding-top: 1px;
+      white-space: nowrap;
+    }
+
+    .news-text { color: var(--dim); }
+    .news-text strong { color: var(--ink); }
+
+    /* ─── PUBLICATIONS ─── */
+    .pub {
+      margin-bottom: 1.05rem;
+      font-size: 0.9rem;
+    }
+
+    .pub-title { font-weight: bold; color: var(--ink); }
+
+    .pub-authors {
+      color: var(--dim);
+      margin-top: 0.04rem;
+    }
+
+    .pub-authors .me {
+      text-decoration: underline;
+      color: var(--ink);
+    }
+
+    .pub-venue { font-style: italic; color: var(--dim); }
+
+    .pub-links { margin-top: 0.18rem; }
+
+    .pub-links a {
+      color: var(--link);
+      font-size: 0.82rem;
+      margin-right: 0.55rem;
+      text-decoration: none;
+    }
+
+    .pub-links a:hover { text-decoration: underline; }
+
+    .pub-impact {
+      font-size: 0.8rem;
+      color: var(--muted);
+      margin-top: 0.08rem;
+    }
+
+    /* ─── EXPERIENCE ─── */
+    .exp {
+      margin-bottom: 1.2rem;
+      font-size: 0.9rem;
+    }
+
+    .exp-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 0.5rem;
+    }
+
+    .exp-role { font-weight: bold; color: var(--ink); }
+
+    .exp-date {
+      font-size: 0.82rem;
+      color: var(--muted);
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+
+    .exp-org {
+      color: var(--dim);
+      font-style: italic;
+      margin-bottom: 0.35rem;
+    }
+
+    .exp-bullets { list-style: none; padding: 0; }
+
+    .exp-bullets li {
+      padding-left: 1.1em;
+      position: relative;
+      color: var(--dim);
+      margin-bottom: 0.18rem;
+    }
+
+    .exp-bullets li::before {
+      content: '–';
+      position: absolute;
+      left: 0;
+      color: var(--muted);
+    }
+
+    /* ─── AWARDS / SERVICE ─── */
+    .award-item {
+      display: grid;
+      grid-template-columns: 1fr 70px;
+      gap: 0 0.8rem;
+      margin-bottom: 0.42rem;
+      font-size: 0.9rem;
+      align-items: baseline;
+    }
+
+    .award-name { color: var(--ink); }
+
+    .award-year {
+      color: var(--muted);
+      font-size: 0.82rem;
+      text-align: right;
+    }
+
+    .award-sub {
+      font-style: italic;
+      color: var(--dim);
+      font-size: 0.84rem;
+      display: block;
+    }
+
+    /* ─── EDUCATION ─── */
+    .edu {
+      margin-bottom: 1rem;
+      font-size: 0.9rem;
+    }
+
+    .edu-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+    }
+
+    .edu-degree { font-weight: bold; }
+
+    .edu-date {
+      font-size: 0.82rem;
+      color: var(--muted);
+      white-space: nowrap;
+    }
+
+    .edu-school { font-style: italic; color: var(--dim); }
+    .edu-gpa { color: var(--dim); margin-top: 0.08rem; }
+    .edu-awards { color: var(--muted); font-size: 0.84rem; margin-top: 0.08rem; }
+
+    /* ─── SKILLS ─── */
+    .skill-row {
+      display: grid;
+      grid-template-columns: 130px 1fr;
+      gap: 0 0.8rem;
+      margin-bottom: 0.32rem;
+      font-size: 0.88rem;
+    }
+
+    .skill-cat { font-weight: bold; color: var(--ink); }
+    .skill-vals { color: var(--dim); }
+
+    /* ─── LINKS ─── */
+    a { color: var(--link); }
+    a:hover { text-decoration: underline; }
+
+    /* ─── FOOTER ─── */
+    footer {
+      margin-top: 2.5rem;
+      padding-top: 0.9rem;
+      border-top: 1px solid var(--rule);
+      font-size: 0.78rem;
+      color: var(--muted);
+    }
+
+    /* ─── MOBILE ─── */
+    @media (max-width: 480px) {
+      .hd { grid-template-columns: 1fr; }
+      .hd-photo { width: 80px; height: 80px; margin-bottom: 0.9rem; }
+      .award-item { grid-template-columns: 1fr; }
+      .award-year { text-align: left; }
+      .skill-row { grid-template-columns: 1fr; gap: 0; }
+      .skill-cat { margin-bottom: 0.1rem; }
+      .edu-header { flex-direction: column; }
+    }
+  </style>
+</head>
+<body>
+<div class="wrap">
+
+  <!-- HEADER -->
+  <div class="hd">
+    <div class="hd-photo">
+        <img src="profile.jpg" alt="Skye Gunasekaran" />
+    </div>
+    <div class="hd-info">
+      <h1>Skye Gunasekaran</h1>
+      <div class="meta">
+        Undergraduate Researcher &mdash; UC Santa Cruz<br>
+        <a href="mailto:akgunase@ucsc.edu">akgunase@ucsc.edu</a><br>
+        <a href="https://github.com/" target="_blank">GitHub</a> &nbsp;&middot;&nbsp;
+        <a href="https://scholar.google.com/" target="_blank">Google Scholar</a> &nbsp;&middot;&nbsp;
+        <a href="cv.pdf" target="_blank">Curriculum Vitae</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ABOUT -->
+  <section class="about">
+    <h2>About</h2>
+    <p>
+      I am an undergraduate researcher at UC Santa Cruz advised by
+      <a href="https://jasoneshraghian.com" target="_blank">Prof. Jason Eshraghian</a>
+      in the Neuromorphic Computing Group. My research spans scalable LLM pretraining
+      infrastructure, transformer efficiency optimizations, and biologically-inspired
+      learning algorithms grounded in predictive coding.
+    </p>
+    <p>
+      My work has appeared in <em>Nature Communications</em>, <em>Nature Computational
+      Science</em>, and <em>APL Machine Learning</em>. I also lead a 150+ student ML
+      research curriculum at UCSC Baskin Engineering and run an undergraduate research
+      incubator. I am a Goldwater Nominee and NSF REU fellow, and expect to graduate
+      in June&nbsp;2026.
+    </p>
+  </section>
+
+  <!-- NEWS -->
+  <section>
+    <h2>News</h2>
+    <div class="news-item">
+      <span class="news-date">Jan 2026</span>
+      <span class="news-text"><strong>Journal Publication</strong> &mdash; &ldquo;Efficient Knowledge Distillation via Salient Feature Masking&rdquo; published in <em>APL Machine Learning</em>.</span>
+    </div>
+    <div class="news-item">
+      <span class="news-date">Sep 2025</span>
+      <span class="news-text"><strong>Journal Publication</strong> &mdash; &ldquo;A Predictive Approach to Enhance Time-Series Forecasting&rdquo; published in <em>Nature Communications</em>.</span>
+    </div>
+    <div class="news-item">
+      <span class="news-date">Sep 2024</span>
+      <span class="news-text"><strong>New Position</strong> &mdash; Began role Lead Tutor at UCSC Baskin Engineering, developing a research curriculum which has served 150+ students.</span>
+    </div>
+    <div class="news-item">
+      <span class="news-date">Jun 2024</span>
+      <span class="news-text"><strong>Journal Publication</strong> &mdash; &ldquo;Bridging the Gap Between Artificial and Natural Intelligence&rdquo; published in <em>Nature Computational Science</em>.</span>
+    </div>
+    <div class="news-item">
+      <span class="news-date">May 2024</span>
+      <span class="news-text"><strong>Conference Publication</strong>&mdash; &ldquo; Knowledge distillation through time for future event prediction &rdquo; published in <em>The Second Tiny Papers Track at ICLR (2024)</em>.</span>
+    </div>
+    <div class="news-item">
+      <span class="news-date">Jan 2023</span>
+      <span class="news-text"> <strong>New Position</strong> &mdash; Joined the Neuromorphic Computing Group at UC Santa Cruz.</span>
+    </div>
+  </section>
+
+  <!-- EXPERIENCE -->
+  <section>
+    <h2>Research Experience</h2>
+
+    <div class="exp">
+      <div class="exp-header">
+        <span class="exp-role">Undergraduate Researcher</span>
+        <span class="exp-date">Jan 2023 &ndash; Present</span>
+      </div>
+      <div class="exp-org">Neuromorphic Computing Group, UC Santa Cruz &mdash; Advisor: Prof. Jason Eshraghian</div>
+    </div>
+    
+    <div class="exp">
+      <div class="exp-header">
+        <span class="exp-role">Lead Tutor</span>
+        <span class="exp-date">Sep 2024 &ndash; Present</span>
+      </div>
+      <div class="exp-org">Baskin Engineering, UC Santa Cruz</div>
+    </div>
+
+
+  </section>
+
+   <!-- PUBLICATIONS -->
+  <section>
+    <h2>Publications</h2>
+
+    <div class="pub">
+      <div class="pub-title">Efficient Knowledge Distillation via Salient Feature Masking</div>
+      <div class="pub-authors">A. Kembay, <span class="me">S. Gunasekaran</span>, R.-J. Zhu, Y. Zhang, J. K. Eshraghian</div>
+      <div class="pub-venue">APL Machine Learning, 4, 016104 (2026)</div>
+    </div>
+
+    <div class="pub">
+      <div class="pub-title">A Predictive Approach to Enhance Time-Series Forecasting</div>
+      <div class="pub-authors"><span class="me">S. Gunasekaran</span>, A. Kembay, H. Ladret, R. J. Zhu, L. Perrinet, O. Kavehei, J. Eshraghian</div>
+      <div class="pub-venue">Nature Communications, 16, 8645 (2025)</div>
+    </div>
+
+    <div class="pub">
+      <div class="pub-title">Bridging the Gap Between Artificial Intelligence and Natural Intelligence</div>
+      <div class="pub-authors">R. J. Zhu, <span class="me">S. Gunasekaran</span>, J. Eshraghian</div>
+      <div class="pub-venue">Nature Computational Science, 4, 559 (2024)</div>
+    </div>
+
+    <div class="pub">
+      <div class="pub-title">Knowledge Distillation Through Time for Future Event Prediction</div>
+      <div class="pub-authors"><span class="me">S. Gunasekaran</span>, J. Eshraghian, R. Zhu, Z. Kuncic</div>
+      <div class="pub-venue">Tiny Papers Track @ ICLR (2024)</div>
+    </div>
+
+  </section>
+
+
+  <!-- AWARDS -->
+  <section>
+    <h2>Awards &amp; Honors</h2>
+
+    <div class="award-item">
+      <div><span class="award-name">Goldwater Nominee</span><span class="award-sub">Barry Goldwater Scholarship Program</span></div>
+      <span class="award-year">2024</span>
+    </div>
+    <div class="award-item">
+      <div><span class="award-name">NSF REU Fellowship</span><span class="award-sub">National Science Foundation</span></div>
+      <span class="award-year">2024</span>
+    </div>
+    <div class="award-item">
+      <div><span class="award-name">Mantey Leadership Award</span><span class="award-sub">UC Santa Cruz</span></div>
+      <span class="award-year">2024</span>
+    </div>
+    <div class="award-item">
+      <div><span class="award-name">Koret Scholarship (&#xd7;2)</span><span class="award-sub">Koret Foundation</span></div>
+      <span class="award-year">2023–24</span>
+    </div>
+    <div class="award-item">
+      <div><span class="award-name">Dean&rsquo;s Award</span><span class="award-sub">Baskin School of Engineering, UCSC</span></div>
+      <span class="award-year">2023</span>
+    </div>
+
+  </section>
+
+  <!-- SERVICE -->
+  <section>
+    <h2>Service</h2>
+
+    <div class="award-item">
+      <div><span class="award-name">Camp Counselor</span><span class="award-sub">Lavner Education</span></div>
+      <span class="award-year">2023-2024</span>
+    </div>
+    <div class="award-item">
+      <div><span class="award-name">Reviewer</span><span class="award-sub">ICLR 2026 Agents In The Wild</span></div>
+      <span class="award-year">2026</span>
+    </div>
+
+  </section>
+
+  <!-- EDUCATION -->
+  <section>
+    <h2>Education</h2>
+    <div class="edu">
+      <div class="edu-header">
+        <span class="edu-degree">B.S. Computer Science</span>
+        <span class="edu-date">Sep 2022 &ndash; Jun 2026</span>
+      </div>
+      <div class="edu-school">University of California, Santa Cruz</div>
+      <div class="edu-gpa">GPA: 3.63</div>
+    </div>
+
+  </section>
+
+  <footer>
+    Skye Gunasekaran &mdash; UC Santa Cruz &mdash;
+    <a href="mailto:akgunase@ucsc.edu">akgunase@ucsc.edu</a> &mdash;
+    Last updated Feb 2026
+  </footer>
+
+</div>
+</body>
+</html>
