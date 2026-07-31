@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Resistance as First Principles — Skye Gunasekaran</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #faf9f7;
+      --ink: #1c1a18;
+      --dim: #555048;
+      --muted: #8a847c;
+      --link: #8b2500;
+      --rule: #ccc8c0;
+    }
+
+    html { font-size: 15px; }
+
+    body {
+      font-family: 'Times New Roman', Times, serif;
+      background: var(--bg);
+      color: var(--ink);
+      line-height: 1.6;
+    }
+
+    /* ─── LAYOUT ─── */
+    .wrap {
+      max-width: 680px;
+      margin: 0 auto;
+      padding: 3.5rem 1.5rem 5rem;
+    }
+
+    /* ─── HEADER ─── */
+    .hd {
+      display: grid;
+      grid-template-columns: 110px 1fr;
+      gap: 0 1.6rem;
+      margin-bottom: 2.6rem;
+      align-items: start;
+    }
+
+    .hd-photo {
+      width: 110px;
+      height: 110px;
+      border-radius: 2px;
+      background: #d8d3cb;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2rem;
+      color: var(--muted);
+      overflow: hidden;
+      flex-shrink: 0;
+    }
+
+    .hd-photo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .hd-info h1 {
+      font-size: 1.55rem;
+      font-weight: bold;
+      letter-spacing: 0.01em;
+      margin-bottom: 0.25rem;
+      line-height: 1.2;
+    }
+
+    .hd-info .meta {
+      font-size: 0.88rem;
+      color: var(--dim);
+      line-height: 1.75;
+    }
+
+    /* ─── SECTIONS ─── */
+    section {
+      margin-bottom: 2.2rem;
+    }
+
+    section h2 {
+      font-size: 0.95rem;
+      font-weight: bold;
+      text-transform: uppercase;
+      letter-spacing: 0.09em;
+      padding-bottom: 0.28rem;
+      border-bottom: 1px solid var(--rule);
+      margin-bottom: 1rem;
+      color: var(--ink);
+    }
+
+    /* ─── ABOUT ─── */
+    .about p {
+      font-size: 0.93rem;
+      color: var(--dim);
+      margin-bottom: 0.55rem;
+    }
+    .about p:last-child { margin-bottom: 0; }
+
+    /* ─── NEWS ─── */
+    .news-item {
+      display: grid;
+      grid-template-columns: 78px 1fr;
+      gap: 0 0.8rem;
+      margin-bottom: 0.5rem;
+      font-size: 0.88rem;
+    }
+
+    .news-date {
+      color: var(--muted);
+      font-size: 0.8rem;
+      padding-top: 1px;
+      white-space: nowrap;
+    }
+
+    .news-text { color: var(--dim); }
+    .news-text strong { color: var(--ink); }
+
+    /* ─── PUBLICATIONS ─── */
+    .pub {
+      margin-bottom: 1.05rem;
+      font-size: 0.9rem;
+    }
+
+    .pub-title { font-weight: bold; color: var(--ink); }
+
+    .pub-authors {
+      color: var(--dim);
+      margin-top: 0.04rem;
+    }
+
+    .pub-authors .me {
+      text-decoration: underline;
+      color: var(--ink);
+    }
+
+    .pub-venue { font-style: italic; color: var(--dim); }
+
+    .pub-links { margin-top: 0.18rem; }
+
+    .pub-links a {
+      color: var(--link);
+      font-size: 0.82rem;
+      margin-right: 0.55rem;
+      text-decoration: none;
+    }
+
+    .pub-links a:hover { text-decoration: underline; }
+
+    .pub-impact {
+      font-size: 0.8rem;
+      color: var(--muted);
+      margin-top: 0.08rem;
+    }
+
+    /* ─── EXPERIENCE ─── */
+    .exp {
+      margin-bottom: 1.2rem;
+      font-size: 0.9rem;
+    }
+
+    .exp-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 0.5rem;
+    }
+
+    .exp-role { font-weight: bold; color: var(--ink); }
+
+    .exp-date {
+      font-size: 0.82rem;
+      color: var(--muted);
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+
+    .exp-org {
+      color: var(--dim);
+      font-style: italic;
+      margin-bottom: 0.35rem;
+    }
+
+    .exp-bullets { list-style: none; padding: 0; }
+
+    .exp-bullets li {
+      padding-left: 1.1em;
+      position: relative;
+      color: var(--dim);
+      margin-bottom: 0.18rem;
+    }
+
+    .exp-bullets li::before {
+      content: '–';
+      position: absolute;
+      left: 0;
+      color: var(--muted);
+    }
+
+    /* ─── AWARDS / SERVICE ─── */
+    .award-item {
+      display: grid;
+      grid-template-columns: 1fr 70px;
+      gap: 0 0.8rem;
+      margin-bottom: 0.42rem;
+      font-size: 0.9rem;
+      align-items: baseline;
+    }
+
+    .award-name { color: var(--ink); }
+
+    .award-year {
+      color: var(--muted);
+      font-size: 0.82rem;
+      text-align: right;
+    }
+
+    .award-sub {
+      font-style: italic;
+      color: var(--dim);
+      font-size: 0.84rem;
+      display: block;
+    }
+
+    /* ─── EDUCATION ─── */
+    .edu {
+      margin-bottom: 1rem;
+      font-size: 0.9rem;
+    }
+
+    .edu-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+    }
+
+    .edu-degree { font-weight: bold; }
+
+    .edu-date {
+      font-size: 0.82rem;
+      color: var(--muted);
+      white-space: nowrap;
+    }
+
+    .edu-school { font-style: italic; color: var(--dim); }
+    .edu-gpa { color: var(--dim); margin-top: 0.08rem; }
+    .edu-awards { color: var(--muted); font-size: 0.84rem; margin-top: 0.08rem; }
+
+    /* ─── SKILLS ─── */
+    .skill-row {
+      display: grid;
+      grid-template-columns: 130px 1fr;
+      gap: 0 0.8rem;
+      margin-bottom: 0.32rem;
+      font-size: 0.88rem;
+    }
+
+    .skill-cat { font-weight: bold; color: var(--ink); }
+    .skill-vals { color: var(--dim); }
+
+    /* ─── LINKS ─── */
+    a { color: var(--link); }
+    a:hover { text-decoration: underline; }
+
+    /* ─── FOOTER ─── */
+    footer {
+      margin-top: 2.5rem;
+      padding-top: 0.9rem;
+      border-top: 1px solid var(--rule);
+      font-size: 0.78rem;
+      color: var(--muted);
+    }
+
+    /* ─── MOBILE ─── */
+    @media (max-width: 480px) {
+      .hd { grid-template-columns: 1fr; }
+      .hd-photo { width: 80px; height: 80px; margin-bottom: 0.9rem; }
+      .award-item { grid-template-columns: 1fr; }
+      .award-year { text-align: left; }
+      .skill-row { grid-template-columns: 1fr; gap: 0; }
+      .skill-cat { margin-bottom: 0.1rem; }
+      .edu-header { flex-direction: column; }
+    }
+  </style>
+</head>
+<body>
+<div class="wrap">
+
+  <!-- HEADER -->
+  <div class="hd">
+    <div class="hd-photo">
+      <img src="profile.jpg" alt="Skye Gunasekaran" />
+    </div>
+    <div class="hd-info">
+      <h1>Skye Gunasekaran</h1>
+      <div class="meta">
+        Undergraduate Researcher &mdash; UC Santa Cruz<br>
+        <a href="mailto:akgunase@ucsc.edu">akgunase@ucsc.edu</a><br>
+        <a href="index.html">Home</a> &nbsp;&middot;&nbsp;
+        <a href="https://www.linkedin.com/in/skye-gunasekaran/" target="_blank">LinkedIn</a> &nbsp;&middot;&nbsp;
+        <a href="https://github.com/SkyeGunasekaran" target="_blank">GitHub</a> &nbsp;&middot;&nbsp;
+        <a href="https://scholar.google.com/citations?user=R_XFG5EAAAAJ&hl=en&oi=ao" target="_blank">Google Scholar</a> &nbsp;&middot;&nbsp;
+        <a href="cv.pdf" target="_blank">Curriculum Vitae</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- BLOG POST -->
+  <section class="about" aria-labelledby="post-heading">
+    <h2 id="post-heading">RESISTANCE AS FIRST PRINCIPLES</h2>
+    <div class="pub">
+      <div class="pub-venue">UC Santa Cruz, Baskin School of Engineering</div>
+      <div class="pub-links"><a href="commencement-2026.pdf" target="_blank">[PDF]</a></div>
+    </div>
+
+    <p>Good afternoon everyone. Families, friends, faculty, staff, and most importantly, the Baskin School of Engineering graduating class of 2026: congratulations.</p>
+
+    <p>I want to begin with the banana slug.</p>
+
+    <p>That is what this university chose.</p>
+
+    <p>Not a bear or a lion, or a cheetah. Not some fast, fearsome animal that looks good on a jersey. UC Santa Cruz students chose a four-inch, bright yellow, shell-less mollusk that lives on the forest floor. Which feels appropriate for a campus where, on any given walk to class, you might pass a deer, a turkey, a squirrel, a coyote pack, or even a family of cows.</p>
+
+    <p>And when the University pushed for the more conventional Sea Lion, UC Santa Cruz students did what they do best: they resisted pressure.</p>
+
+    <p>Their decision tells you almost everything you need to know about this place, and almost everything you need to carry with you when you leave it.</p>
+
+    <p>The banana slug is not impressive in the usual ways. It is not fast, intimidating, or conventionally powerful. It is not trying to convince anyone that it belongs on a battlefield, a billboard, or a ranking list.</p>
+
+    <p>It is strange. It is stubborn. It is unmistakable.</p>
+
+    <p>And that is exactly what makes it perfect.</p>
+
+    <p>Over these past few years, we have been trained to think like engineers.</p>
+
+    <p>We learned how to break complexity down into components. We learned to go back to first principles: to build our understanding from what is actually, verifiably true.</p>
+
+    <p>And we learned that one of the most important questions an engineer can ask is: does this have to be this way? It is also the question many of us have asked while standing on a packed Route 18 bus, wondering whether we would make it to class on time.</p>
+
+    <p>Sometimes that question helped us debug code. Sometimes it helped us survive group projects. Sometimes it helped us stand in the Global Village Cafe line, calculate the wait time on our phones, and decide that coffee was worth a 1 hour wait.</p>
+
+    <p>That is a reasonable way to approach a technical problem.</p>
+
+    <p>But UC Santa Cruz was teaching us something else too, a lesson that does not appear on any syllabus in any class here. It was teaching us that first principles are not only a way to build better systems. They are a way to refuse bad premises.</p>
+
+    <p>UC Santa Cruz was founded as a deliberate alternative to the traditional university system. From the beginning, this place asked whether the old model of higher education was actually working, or whether it had simply gone unexamined long enough to feel inevitable.</p>
+
+    <p>The names of our colleges embody these principles.</p>
+
+    <p>John R. Lewis College reminds us that justice is not an abstract ideal, but a practice. Oakes College asks us to communicate diversity for a just society. Rachel Carson College reminds us that every system lives inside a larger world of human, social, and environmental consequences.</p>
+
+    <p>These principles tell us that we were not educated here simply to become useful to the systems that already exist. We were educated here to question them.</p>
+
+    <p>And that matters, because here is the crossroads we are standing at today.</p>
+
+    <p>Engineering at UC Santa Cruz has grown tremendously. Science Hill is not the same institution it was when it began. That growth has been exponential. This means more research, more students, more opportunity, and more influence.</p>
+
+    <p>But every institution that begins as something radical faces the same risk. Slowly, gradually, without any single decision, it can become ordinary. It learns to optimize for output and forgets its purpose.</p>
+
+    <p>You are the answer to that risk.</p>
+
+    <p>You leave here today as something rare: technical decision-makers educated in a tradition of resistance.</p>
+
+    <p>I have been conducting AI research since my junior year of high school. I spent my undergraduate years working on complex machine learning systems, and I believe this work can expand human creativity, accelerate science, improve accessibility, and help us build tools that are more responsive to the people who use them.</p>
+
+    <p>But we cannot afford to be naive. Because the same ideas that make a model more efficient can also make it easier to deploy everywhere. The same predictive systems that help us understand the future can also be used to police, rank, surveil, and target people.</p>
+
+    <p>And I say this as someone who has learned that systems are never as neutral as they appear. I have spent a lot of my life being told, directly or indirectly, what kind of person would be easier for the world to understand.</p>
+
+    <p>But UC Santa Cruz gave me a different inheritance. This place taught me that refusing to become more convenient is not a weakness. It is the beginning of integrity.</p>
+
+    <p>And that is something I will carry with me from this place.</p>
+
+    <p>But hope cannot mean pretending the stakes are low, or avoiding the truth because it makes the room quieter. Real hope is not the belief that everything will be fine, but making the decision to take responsibility for what happens next.</p>
+
+    <p>That is what UC Santa Cruz has been preparing us to do.</p>
+
+    <p>There will be moments when the easiest thing to do is to accept the premise, write the code, run the experiment, submit the design, and move on. There will be moments when people tell you that asking questions is slowing things down, that ethics is someone else’s department, that impact is too complicated, that the system is too big to challenge.</p>
+
+    <p>But UC Santa Cruz has taught us to pause. To ask who is missing from the room. To ask who benefits. To ask who is harmed. To ask what has been made invisible by the language of efficiency.</p>
+
+    <p>And then, if necessary, to resist. None of us learns how to do that alone. So before I close, I want to thank the people who made it possible for me to stand here.</p>
+
+    <p>To my advisor, Dr. Jason Eshraghian: thank you for your mentorship, your faith in me, and your example of rigorous work done with imagination and care. I would almost certainly not be standing here without your guidance.</p>
+
+    <p>To my colleagues in the lab, my friends in College Democrats, and my siblings in the trans community. I wish I had the time to name each and every one of you. Please know how deeply I love you, and that all of you, in different ways, taught me what it looks like to hold the line.</p>
+
+    <p>And to my mom and dad: thank you for everything, my words cannot express the love I hold for you.</p>
+
+    <p>So to the Class of 2026:</p>
+
+    <p>When the system tells you, “This is how it has always been done,” remember who has paid the price for that sentence, the people pushed to the margins and treated as data points before they were treated as neighbors.</p>
+
+    <p>Our responsibility is not only to build systems that work. It is to build systems that do not require people to disappear in order to function.</p>
+
+    <p>When the world tells you “Be faster, sleeker, easier to categorize, easier to fund, easier to rank, easier to explain,” remember the banana slug.</p>
+
+    <p>The banana slug does not move fast. It does not pretend to be fierce. It does not become more convenient so the world can understand it.</p>
+
+    <p>It survives by being exactly what it is.</p>
+
+    <p>And maybe that is the lesson this place has been teaching us all along.</p>
+
+    <p>Not resistance as performance. Not resistance as refusal for its own sake. But resistance as discipline. Resistance as responsibility. Resistance as first principles.</p>
+
+    <p>Congratulations, Baskin School of Engineering Class of 2026.</p>
+  </section>
+
+  <footer>
+    Skye Gunasekaran &mdash; UC Santa Cruz &mdash;
+    <a href="mailto:akgunase@ucsc.edu">akgunase@ucsc.edu</a>
+  </footer>
+
+</div>
+</body>
+</html>
